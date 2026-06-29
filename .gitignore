@@ -1,0 +1,34 @@
+# Sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Ferramentas / sessão local
+.claude/
+
+# Editores
+.vscode/
+.idea/
+*.sublime-*
+*~
+*.swp
+
+# Segredos / credenciais (nunca commitar)
+.env
+.env.*
+*.key
+*.pem
+secrets*.json
+credentials*.json
+
+# Logs e temporários
+*.log
+npm-debug.log*
+node_modules/
+tmp/
+.cache/

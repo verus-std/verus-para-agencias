@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Verus Studio Design System — Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --mint:#00FFC2;
+  --mint-light:#C5FFF1;
+  --deep:#00B894;
+  --bg:#010C13;
+  --s1:rgba(255,255,255,0.03);
+  --s2:rgba(255,255,255,0.06);
+  --s3:rgba(255,255,255,0.10);
+  --b1:rgba(255,255,255,0.06);
+  --b2:rgba(255,255,255,0.10);
+  --t1:#fff;
+  --t2:rgba(255,255,255,0.60);
+  --t3:rgba(255,255,255,0.35);
+}
+body{background:var(--bg);color:var(--t1);font-family:'Geist',sans-serif;overflow-x:hidden;line-height:1.5}
+::selection{background:rgba(0,255,194,0.3)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+
+/* BG LAYERS */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;justify-content:center}
+.bg-grid-inner{width:100%;max-width:1200px;display:flex}
+.bg-col{flex:1;border-left:1px solid rgba(255,255,255,0.035);height:100%;position:relative;overflow:hidden}
+.bg-col:last-child{border-right:1px solid rgba(255,255,255,0.035)}
+
+@keyframes beam-fall{
+  0%{transform:translateY(-100%);opacity:0}
+  5%{opacity:.5}50%{opacity:1}95%{opacity:.5}
+  100%{transform:translateY(120vh);opacity:0}
+}
+.beam{position:absolute;top:0;left:-0.5px;width:1px;background:linear-gradient(to bottom,transparent,rgba(0,255,194,.7),transparent)}
+
+.glow-orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(120px)}
+.glow-1{width:500px;height:500px;top:-100px;left:-100px;background:rgba(0,255,194,.12)}
+.glow-2{width:300px;height:300px;bottom:0;right:0;background:rgba(0,184,148,.10)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;border-bottom:1px solid var(--b1);background:rgba(1,12,19,.7);backdrop-filter:blur(20px)}
+.nav-logo{display:flex;align-items:center;gap:11px}
+.logo-mark{display:flex;align-items:center;gap:9px}
+.logo-word{font-size:18px;font-weight:600;letter-spacing:-.03em;color:#fff}
+.logo-word b{color:var(--mint)}
+.logo-badge{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,255,194,.75);border:1px solid rgba(0,255,194,.2);background:rgba(0,255,194,.05);padding:2px 7px;border-radius:999px}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#fff}
+
+/* WRAPPER */
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 48px}
+
+/* SECTION LABEL */
+.sec-label{display:flex;align-items:center;gap:14px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:40px}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--mint)}
+.sec-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;letter-spacing:-.045em;line-height:1;color:#fff;margin-bottom:10px}
+.sec-desc{font-size:1rem;color:var(--t2);max-width:520px;line-height:1.65}
+
+section{padding:80px 0;border-top:1px solid var(--b1)}
+section:first-of-type{border-top:none}
+
+/* HERO */
+#hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:28px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-badge span{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(0,255,194,.85)}
+h1.hero-title{font-size:clamp(4rem,10vw,7rem);font-weight:600;letter-spacing:-.055em;line-height:.9;margin-bottom:28px}
+.gradient-text{background:linear-gradient(90deg,var(--mint),var(--mint-light),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--t2);max-width:440px;margin-bottom:44px;line-height:1.65}
+.hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn-orbit{position:relative;display:inline-flex;cursor:pointer;overflow:hidden;border-radius:999px}
+.btn-orbit .orbit-ring{position:absolute;inset:0;overflow:hidden;border-radius:999px}
+.btn-orbit .conic{position:absolute;inset:-100%;width:300%;height:300%;animation:spin 3s linear infinite;background:conic-gradient(from 0deg,transparent 0deg,transparent 80deg,rgba(0,255,194,.8) 180deg,transparent 280deg,transparent 360deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-orbit .ofill{position:absolute;inset:1px;border-radius:999px;backdrop-filter:blur(20px);background:rgba(1,12,19,.92)}
+.btn-orbit .ocontent{position:relative;z-index:10;display:flex;gap:10px;align-items:center;padding:11px 20px 11px 16px;font-size:.9rem;font-weight:500;color:#fff}
+.btn-solid{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:999px;border:none;cursor:pointer;font-size:.875rem;font-weight:600;color:#010C13;background:radial-gradient(65% 65% at 50% 100%,rgba(197,255,241,.95) 0%,transparent 100%),linear-gradient(0deg,var(--mint),var(--mint));position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.btn-solid:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,255,194,.35)}
+.btn-solid::before{content:'';position:absolute;inset:1px;background:linear-gradient(177deg,rgba(255,255,255,.4) 0%,transparent 100%);border-radius:999px;z-index:0}
+.btn-solid span{position:relative;z-index:1}
+
+/* TYPOGRAPHY */
+.type-row{display:flex;flex-direction:column;gap:6px;padding:28px 0;border-bottom:1px solid var(--b1)}
+.type-row:last-child{border-bottom:none}
+.type-meta{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:8px}
+.type-row-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.type-mono{font-size:11px;color:var(--t3);font-family:monospace;white-space:nowrap}
+.text-glow{text-shadow:0 0 40px rgba(0,255,194,.18),0 0 80px rgba(0,184,148,.10)}
+
+/* COLORS */
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.color-card{display:flex;flex-direction:column;gap:10px}
+.color-swatch{aspect-ratio:4/3;border-radius:12px}
+.color-name{font-size:13px;font-weight:500}
+.color-hex{font-size:11px;color:var(--t3);font-family:monospace}
+
+/* COMPONENTS */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.comp-card{background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:28px}
+.comp-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:16px}
+
+/* GLASS CARD */
+.glass-card{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px}
+.glass-inner-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.glass-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--deep));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#010C13}
+.metric-big{font-size:2rem;font-weight:600;letter-spacing:-.04em;line-height:1}
+.metric-delta{font-size:11px;color:rgba(0,255,194,.85);background:rgba(0,255,194,.08);padding:3px 8px;border-radius:999px;margin-top:4px;display:inline-block}
+
+/* BADGES */
+.badge-row{display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.04em}
+.badge-mint{background:rgba(0,255,194,.12);color:var(--mint);border:1px solid rgba(0,255,194,.2)}
+.badge-glow{background:rgba(0,255,194,.08);color:var(--mint);border:1px solid rgba(0,255,194,.15);box-shadow:0 0 12px rgba(0,255,194,.18)}
+.badge-outline{background:transparent;color:var(--t2);border:1px solid var(--b2)}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+
+/* INPUT */
+.input-field{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:12px 16px;color:#fff;font-size:.9rem;font-family:'Geist',sans-serif;width:100%;outline:none;transition:border-color .2s}
+.input-field::placeholder{color:var(--t3)}
+.input-field:focus{border-color:rgba(0,255,194,.5);box-shadow:0 0 0 3px rgba(0,255,194,.12)}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--b2),transparent);margin:16px 0}
+
+/* MOTION CARDS */
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.motion-card{background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:28px 24px;cursor:pointer;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),box-shadow .35s ease,background .3s ease}
+.motion-card:hover{background:var(--s2);transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,255,194,.12)}
+.motion-card.hover-scale:hover{transform:scale(1.04);box-shadow:none}
+.motion-card.hover-glow{border-color:transparent}
+.motion-card.hover-glow:hover{border-color:rgba(0,255,194,.4);box-shadow:0 0 20px rgba(0,255,194,.10)}
+.motion-title{font-size:14px;font-weight:500;margin-bottom:6px}
+.motion-sub{font-size:11px;color:var(--t3);font-family:monospace}
+
+/* BEAM DEMO */
+.beam-demo{position:relative;background:var(--s1);border:1px solid var(--b1);border-radius:14px;overflow:hidden;height:160px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;margin-top:48px}
+.b-beam{position:absolute;top:0;width:1px;background:linear-gradient(to bottom,transparent,var(--mint),transparent);height:100%;animation:beam-fall 6s linear infinite}
+.b-beam:nth-child(2){left:33%;animation-duration:8s;animation-delay:2s;background:linear-gradient(to bottom,transparent,var(--deep),transparent)}
+.b-beam:nth-child(3){left:66%;animation-duration:7s;animation-delay:4s}
+.b-beam:first-child{left:16%}
+.b-beam:last-child{left:83%;animation-duration:5s;animation-delay:1s}
+
+/* CARD STACK */
+.card-stack-wrap{position:relative;width:200px;height:140px;margin:48px auto 0}
+.cs{position:absolute;inset:0;border-radius:14px;border:1px solid}
+.cs:nth-child(1){background:var(--s1);border-color:var(--b1);transform:translateY(20px) scale(.88);z-index:10;opacity:.35}
+.cs:nth-child(2){background:var(--s2);border-color:var(--b1);transform:translateY(10px) scale(.94);z-index:20;opacity:.55}
+.cs:nth-child(3){background:var(--s3);border-color:rgba(0,255,194,.25);transform:translateY(0) scale(1);z-index:30;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(0,255,194,.18)}
+.cs-icon{width:28px;height:28px;color:var(--mint)}
+
+/* ICONS */
+.icon-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-top:48px}
+.icon-cell{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;background:rgba(0,0,0,.4);border:1px solid var(--b1);border-radius:12px;cursor:pointer;transition:border-color .2s}
+.icon-cell:hover{border-color:rgba(0,255,194,.4)}
+.icon-cell:hover .ic{color:var(--mint)}
+.ic{width:18px;height:18px;color:#fff;transition:color .2s;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon-name{font-size:9px;color:var(--t3);font-family:monospace;text-align:center}
+
+/* FOOTER */
+footer{padding:56px 0;text-align:center;border-top:1px solid var(--b1)}
+footer p{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.05em}
+
+/* SCROLLBAR BEAM */
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(24px);filter:blur(6px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.reveal{animation:fadeSlideIn .8s ease both}
+</style>
+</head>
+<body>
+
+<!-- BG LAYERS -->
+<div class="bg-grid">
+  <div class="bg-grid-inner">
+    <div class="bg-col"><div class="beam" style="height:180px;animation:beam-fall 6s linear infinite"></div></div>
+    <div class="bg-col"><div class="beam" style="height:260px;animation:beam-fall 8s linear 2s infinite"></div></div>
+    <div class="bg-col"><div class="beam" style="height:320px;animation:beam-fall 7s linear 4s infinite"></div></div>
+    <div class="bg-col"><div class="beam" style="height:200px;animation:beam-fall 9s linear 1s infinite"></div></div>
+    <div class="bg-col"><div class="beam" style="height:240px;animation:beam-fall 6.5s linear 3s infinite"></div></div>
+  </div>
+</div>
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="14" stroke="url(#vg)" stroke-width="1.8"/>
+        <path d="M9.5 11 L16 22.5 L22.5 11" stroke="url(#vg)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="vg" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00FFC2"/><stop offset="1" stop-color="#C5FFF1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="logo-word">Verus<b>.</b></span>
+    </div>
+    <span class="logo-badge">Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="#hero">Hero</a>
+    <a href="#typography">Type</a>
+    <a href="#colors">Colors</a>
+    <a href="#components">Components</a>
+    <a href="#motion">Motion</a>
+    <a href="#icons">Icons</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge reveal" style="animation-delay:.1s">
+    <div class="pulse"></div>
+    <span>Design System v1.0</span>
+  </div>
+  <h1 class="hero-title text-glow reveal" style="animation-delay:.2s">
+    Verus<br/>Studio<br/><span class="gradient-text">System.</span>
+  </h1>
+  <p class="hero-sub reveal" style="animation-delay:.35s">
+    A linguagem visual da Verus Studio. Componentes atômicos, princípios cinéticos e estética dark-mode — tudo documentado.
+  </p>
+  <div class="hero-ctas reveal" style="animation-delay:.5s">
+    <div class="btn-orbit">
+      <div class="orbit-ring"><div class="conic"></div></div>
+      <div class="ofill"></div>
+      <div class="ocontent">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--mint)" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Explorar Sistema
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <button class="btn-solid">
+      <span>Iniciar Projeto</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:relative;z-index:1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="sec-label">01 Typography</div>
+  <div class="sec-title">Type Scale</div>
+  <p class="sec-desc">Geist Sans com tracking apertado e hierarchy bem definida.</p>
+
+  <div style="margin-top:48px">
+    <div class="type-row">
+      <div class="type-meta">Heading 1 / Display</div>
+      <div class="type-row-inner">
+        <h1 class="text-glow" style="font-size:clamp(3rem,8vw,5.5rem);font-weight:600;letter-spacing:-.05em;line-height:.9">The Quick Brown Fox</h1>
+        <span class="type-mono">96px / –0.05em</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta" style="color:var(--t3)">Heading 2 / Section</div>
+      <div class="type-row-inner">
+        <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.05">The Quick Brown Fox</h2>
+        <span class="type-mono">60px / tight</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta" style="color:var(--t3)">Body Large</div>
+      <div class="type-row-inner">
+        <p style="font-size:1.1rem;color:var(--t2);max-width:500px;line-height:1.65">The quick brown fox jumps over the lazy dog. Usado para conteúdo de corpo primário e descrições de hero com legibilidade ideal.</p>
+        <span class="type-mono">18px / 28px</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta" style="color:var(--t3)">Gradient Text</div>
+      <div class="type-row-inner">
+        <span class="gradient-text" style="font-size:clamp(2.5rem,6vw,4rem);font-weight:600;letter-spacing:-.045em;line-height:1">Gradient</span>
+        <span class="type-mono">bg-clip-text</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta" style="color:var(--t3)">Uppercase Label</div>
+      <div class="type-row-inner">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)">UPPERCASE LABEL</span>
+        <span class="type-mono">10px / 0.2em</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section id="colors">
+  <div class="sec-label">02 Color Palette</div>
+  <div class="sec-title">Colors & Surfaces</div>
+  <p class="sec-desc">Paleta de marca, superfícies e tratamentos de gradiente.</p>
+
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background:#010C13;border:1px solid var(--b1)"></div>
+      <div class="color-name">Page Background</div>
+      <div class="color-hex">#010C13</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#00FFC2"></div>
+      <div class="color-name">Primary Mint</div>
+      <div class="color-hex">#00FFC2</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#C5FFF1"></div>
+      <div class="color-name">Light Mint</div>
+      <div class="color-hex">#C5FFF1</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:linear-gradient(135deg,#00FFC2,#C5FFF1)"></div>
+      <div class="color-name">Brand Gradient</div>
+      <div class="color-hex">mint → light</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)"></div>
+      <div class="color-name">Surface 1</div>
+      <div class="color-hex">white / 3%</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)"></div>
+      <div class="color-name">Surface 2</div>
+      <div class="color-hex">white / 6%</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(8px)"></div>
+      <div class="color-name">Glass Surface</div>
+      <div class="color-hex">white/10% + blur</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:linear-gradient(90deg,#00FFC2,#C5FFF1,#fff)"></div>
+      <div class="color-name">Hero Gradient</div>
+      <div class="color-hex">mint → light → white</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="sec-label">03 Components</div>
+  <div class="sec-title">UI Components</div>
+  <p class="sec-desc">Componentes atômicos com superfícies translúcidas e micro-animações.</p>
+
+  <div class="comp-grid">
+    <!-- GLASS CARD -->
+    <div>
+      <div class="comp-label">Glass Card</div>
+      <div class="glass-card">
+        <div class="glass-inner-row">
+          <div class="glass-avatar">VS</div>
+          <div>
+            <div style="font-size:14px;font-weight:500">Verus Studio</div>
+            <div style="font-size:11px;color:var(--t3)">Creative Direction</div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="metric-big">+184%</div>
+        <div class="metric-delta">↑ 22% vs mês anterior</div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div>
+      <div class="comp-label">Badges & Pills</div>
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div class="badge-row">
+          <span class="badge badge-mint"><span class="badge-dot"></span> Live</span>
+          <span class="badge badge-glow">New</span>
+          <span class="badge badge-outline">Beta</span>
+        </div>
+        <div class="badge-row">
+          <span class="badge" style="background:rgba(0,200,100,.08);color:rgba(0,200,100,.9);border:1px solid rgba(0,200,100,.2)"><span class="badge-dot"></span> Active</span>
+          <span class="badge" style="background:rgba(255,160,0,.08);color:rgba(255,180,0,.9);border:1px solid rgba(255,160,0,.2)">Pending</span>
+          <span class="badge" style="background:rgba(255,70,70,.08);color:rgba(255,90,90,.9);border:1px solid rgba(255,70,70,.2)">Error</span>
+        </div>
+        <div class="badge badge-mint" style="width:fit-content;font-size:10px;letter-spacing:.15em;text-transform:uppercase">Design System v1.0</div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div>
+      <div class="comp-label">Form Elements</div>
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <input class="input-field" type="text" placeholder="Nome do projeto…"/>
+        <input class="input-field" type="text" placeholder="Buscar componentes…" value="Orbit Button"/>
+        <div style="display:flex;gap:8px">
+          <button class="btn-solid" style="flex:1;justify-content:center"><span>Enviar</span></button>
+          <button style="flex:1;background:var(--s2);border:1px solid var(--b2);border-radius:999px;padding:11px 20px;color:var(--t2);font-size:.875rem;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORBIT BUTTON -->
+    <div>
+      <div class="comp-label">Orbit Button</div>
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+        <div class="btn-orbit">
+          <div class="orbit-ring"><div class="conic"></div></div>
+          <div class="ofill"></div>
+          <div class="ocontent">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--mint)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Agendar Projeto
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+        <button class="btn-solid"><span>Iniciar Projeto</span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:relative;z-index:1"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <div style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;background:transparent;border:1px solid var(--b2);border-radius:999px;font-size:.875rem;color:var(--t2)">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5zM20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5zM3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14zM14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5zM15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5zM8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+          Ghost / Outline
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCORDION -->
+    <div>
+      <div class="comp-label">Accordion</div>
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:20px 24px">
+        <div id="acc1" style="border-bottom:1px solid var(--b1)">
+          <button onclick="toggleAcc('acc1')" style="display:flex;justify-content:space-between;width:100%;padding:16px 0;background:none;border:none;color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif;text-align:left">
+            Tokens & Variables
+            <span id="acc1-icon" style="transition:transform .3s;color:var(--mint)">+</span>
+          </button>
+          <div id="acc1-body" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.16,1,0.3,1);color:var(--t2);font-size:.875rem;line-height:1.65">
+            <p style="padding-bottom:16px">CSS custom properties para cores, superfícies, bordas e animações. Tudo escalável via variáveis.</p>
+          </div>
+        </div>
+        <div id="acc2" style="border-bottom:1px solid var(--b1)">
+          <button onclick="toggleAcc('acc2')" style="display:flex;justify-content:space-between;width:100%;padding:16px 0;background:none;border:none;color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif;text-align:left">
+            Motion Principles
+            <span id="acc2-icon" style="transition:transform .3s;color:var(--mint)">+</span>
+          </button>
+          <div id="acc2-body" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.16,1,0.3,1);color:var(--t2);font-size:.875rem;line-height:1.65">
+            <p style="padding-bottom:16px">Ease-out-expo para entradas, spring para feedback. Durations de 200–600ms dependendo do contexto.</p>
+          </div>
+        </div>
+        <div id="acc3">
+          <button onclick="toggleAcc('acc3')" style="display:flex;justify-content:space-between;width:100%;padding:16px 0;background:none;border:none;color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif;text-align:left">
+            Grid & Spacing
+            <span id="acc3-icon" style="transition:transform .3s;color:var(--mint)">+</span>
+          </button>
+          <div id="acc3-body" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.16,1,0.3,1);color:var(--t2);font-size:.875rem;line-height:1.65">
+            <p style="padding-bottom:16px">Grid de 5 colunas com beams verticais. Padding horizontal de 48px no desktop, 24px no mobile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div>
+      <div class="comp-label">Metric Cards</div>
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="background:var(--s2);border:1px solid var(--b1);border-radius:12px;padding:16px">
+            <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px">Projetos</div>
+            <div style="font-size:1.6rem;font-weight:600;letter-spacing:-.03em;line-height:1">142</div>
+            <div style="font-size:11px;color:rgba(0,200,100,.8);margin-top:4px">↑ +12 this month</div>
+          </div>
+          <div style="background:var(--s2);border:1px solid var(--b1);border-radius:12px;padding:16px">
+            <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px">Alcance</div>
+            <div style="font-size:1.6rem;font-weight:600;letter-spacing:-.03em;line-height:1">2.4M</div>
+            <div style="font-size:11px;color:rgba(0,255,194,.85);margin-top:4px">↑ +184%</div>
+          </div>
+        </div>
+        <div style="background:rgba(0,255,194,.06);border:1px solid rgba(0,255,194,.12);border-radius:12px;padding:16px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-bottom:6px">Performance Score</div>
+          <div style="display:flex;align-items:baseline;gap:8px">
+            <div style="font-size:2.2rem;font-weight:600;letter-spacing:-.03em;line-height:1" class="gradient-text">98.4</div>
+            <div style="font-size:12px;color:var(--t3)">/100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION -->
+<section id="motion">
+  <div class="sec-label">04 Motion & Kinetics</div>
+  <div class="sec-title">Hover & Transitions</div>
+  <p class="sec-desc">Interações spring, lift e glow com ease curves exclusivas.</p>
+
+  <div class="motion-grid">
+    <div class="motion-card">
+      <div class="motion-title">Hover Lift</div>
+      <div class="motion-sub">–translate-y-6 + shadow</div>
+    </div>
+    <div class="motion-card hover-scale">
+      <div class="motion-title">Hover Scale</div>
+      <div class="motion-sub">scale(1.04)</div>
+    </div>
+    <div class="motion-card hover-glow">
+      <div class="motion-title">Hover Glow</div>
+      <div class="motion-sub">border + bg glow</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px">
+    <div style="position:relative">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:16px">Card Stack</div>
+      <div style="display:flex;justify-content:flex-start">
+        <div class="card-stack-wrap">
+          <div class="cs"></div>
+          <div class="cs"></div>
+          <div class="cs">
+            <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:16px">Animated Beams</div>
+      <div class="beam-demo">
+        <div class="b-beam"></div>
+        <div class="b-beam"></div>
+        <div class="b-beam"></div>
+        <div class="b-beam"></div>
+        <div class="b-beam"></div>
+        <span style="font-size:10px;color:var(--t3);font-family:monospace;position:relative;z-index:2">animate-beam classes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONS -->
+<section id="icons">
+  <div class="sec-label">05 Iconography</div>
+  <div class="sec-title">Icons</div>
+  <p class="sec-desc">Lucide icon system. Stroke-width: 1.5. Hover → brand primary.</p>
+
+  <div class="icon-grid">
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <span class="icon-name">settings</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="icon-name">user</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="icon-name">search</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="icon-name">bell</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span class="icon-name">menu</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="icon-name">arrow-right</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span class="icon-name">play</span>
+    </div>
+    <div class="icon-cell">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span class="icon-name">share</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>Verus Studio Design System v1.0 — Mint gradient #00FFC2 → #C5FFF1 sobre #010C13</p>
+</footer>
+
+<script>
+function toggleAcc(id){
+  const body=document.getElementById(id+'-body');
+  const icon=document.getElementById(id+'-icon');
+  const isOpen=body.style.maxHeight&&body.style.maxHeight!=='0px';
+  ['acc1','acc2','acc3'].forEach(a=>{
+    document.getElementById(a+'-body').style.maxHeight='0px';
+    document.getElementById(a+'-icon').style.transform='rotate(0deg)';
+  });
+  if(!isOpen){
+    body.style.maxHeight='200px';
+    icon.style.transform='rotate(45deg)';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Verus Studio — Landing pages e criativos prontos em até 4 dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --mint:#00FFC2;
+  --mint-light:#C5FFF1;
+  --deep:#00B894;
+  --bg:#010C13;
+  --s1:rgba(255,255,255,0.03);
+  --s2:rgba(255,255,255,0.06);
+  --s3:rgba(255,255,255,0.10);
+  --b1:rgba(255,255,255,0.06);
+  --b2:rgba(255,255,255,0.10);
+  --t1:#fff;
+  --t2:rgba(255,255,255,0.60);
+  --t3:rgba(255,255,255,0.35);
+  --max:1200px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Geist',sans-serif;overflow-x:hidden;line-height:1.5;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(0,255,194,0.3)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:3px}
+a{text-decoration:none;color:inherit}
+
+/* BG LAYERS */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;justify-content:center}
+.bg-grid-inner{width:100%;max-width:var(--max);display:flex}
+.bg-col{flex:1;border-left:1px solid rgba(255,255,255,0.03);height:100%;position:relative;overflow:hidden}
+.bg-col:last-child{border-right:1px solid rgba(255,255,255,0.03)}
+@keyframes beam-fall{0%{transform:translateY(-100%);opacity:0}5%{opacity:.5}50%{opacity:1}95%{opacity:.5}100%{transform:translateY(120vh);opacity:0}}
+.beam{position:absolute;top:0;left:-0.5px;width:1px;background:linear-gradient(to bottom,transparent,rgba(0,255,194,.6),transparent)}
+.glow-orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(130px);z-index:0}
+.glow-1{width:520px;height:520px;top:-120px;left:-140px;background:rgba(0,255,194,.10)}
+.glow-2{width:420px;height:420px;top:40%;right:-160px;background:rgba(0,184,148,.08)}
+.glow-3{width:360px;height:360px;bottom:-120px;left:30%;background:rgba(0,255,194,.06)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;padding:11px 24px;background:linear-gradient(90deg,#00FFC2,#C5FFF1)}
+.nav-logo{display:flex;align-items:center;gap:11px}
+.logo-mark{display:flex;align-items:center;gap:9px}
+.logo-word{font-size:18px;font-weight:600;letter-spacing:-.03em;color:#fff}
+.logo-word b{color:var(--mint)}
+.logo-badge{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,255,194,.75);border:1px solid rgba(0,255,194,.2);background:rgba(0,255,194,.05);padding:2px 7px;border-radius:999px}
+.nav-urgency{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:#06231C;letter-spacing:.005em;white-space:nowrap;transition:opacity .2s}
+.nav-urgency:hover{opacity:.72}
+.nav-urgency b{color:#010C13;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.nav-urgency .pulse{background:#06231C}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:999px;font-size:.8rem;font-weight:600;color:#010C13;background:var(--mint);transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,194,.3)}
+
+/* WRAP & SECTIONS */
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 48px}
+section{position:relative;z-index:1;padding:104px 0;border-top:1px solid var(--b1)}
+#solucao,#processo,#paraquem,#autoridade,#diferenciais,#whitelabel,#comparativo,#faq,#quemsomos{border-top:none}
+.sec-label{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);background:rgba(0,255,194,.08);border:1px solid rgba(0,255,194,.22);padding:6px 13px;border-radius:999px;margin-bottom:22px}
+.sec-label::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--mint)}
+.sec-light .sec-label{background:rgba(0,169,138,.10);border-color:rgba(0,169,138,.24)}
+.h2{font-size:clamp(1.65rem,3.1vw,2.4rem);font-weight:600;letter-spacing:-.035em;line-height:1.08;color:#fff}
+.lead{font-size:1.05rem;color:var(--t2);line-height:1.7;margin-top:18px}
+.support{font-size:.96rem;color:var(--t3);line-height:1.75;margin-top:18px}
+.gradient-text{background:linear-gradient(90deg,var(--mint),var(--mint-light),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mint-text{color:var(--mint)}
+.text-glow{text-shadow:0 0 50px rgba(0,255,194,.16),0 0 90px rgba(0,184,148,.08)}
+
+/* TWO COLUMN */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.two.lean{grid-template-columns:0.95fr 1.05fr}
+.col-sticky{position:static}
+
+/* BUTTONS */
+.btn-solid{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;border:none;cursor:pointer;font-size:.92rem;font-weight:600;color:#010C13;background:radial-gradient(70% 70% at 50% 100%,rgba(197,255,241,.95) 0%,transparent 100%),var(--mint);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;font-family:'Geist',sans-serif}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(0,255,194,.34)}
+.btn-solid::before{content:'';position:absolute;inset:1px;background:linear-gradient(177deg,rgba(255,255,255,.45) 0%,transparent 60%);border-radius:999px;z-index:0;pointer-events:none}
+.btn-solid span,.btn-solid svg{position:relative;z-index:1}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;border:1px solid var(--b2);background:var(--s1);color:var(--t1);font-size:.92rem;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;font-family:'Geist',sans-serif}
+.btn-ghost:hover{border-color:rgba(0,255,194,.45);background:rgba(0,255,194,.05)}
+.btn-ghost svg{color:var(--mint)}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:34px}
+.cta-note{font-size:.86rem;color:var(--t3);line-height:1.65;margin-top:22px;max-width:440px}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.04em;background:rgba(0,255,194,.08);color:var(--mint);border:1px solid rgba(0,255,194,.18)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--mint)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* CHECK LIST */
+.chk-list{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+.chk{display:flex;gap:13px;align-items:flex-start;font-size:.98rem;color:var(--t1)}
+.chk-ico{flex:0 0 22px;width:22px;height:22px;border-radius:7px;background:rgba(0,255,194,.12);border:1px solid rgba(0,255,194,.25);display:flex;align-items:center;justify-content:center;color:var(--mint);margin-top:1px}
+.chk-ico svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* CARDS */
+.card{background:var(--s1);border:1px solid var(--b1);border-radius:18px;padding:26px}
+.card-ico{width:42px;height:42px;border-radius:11px;background:rgba(0,255,194,.08);border:1px solid rgba(0,255,194,.18);display:flex;align-items:center;justify-content:center;color:var(--mint);margin-bottom:18px}
+.card-ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card-title{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.card-desc{font-size:.92rem;color:var(--t2);line-height:1.6}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:50px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+
+/* HERO */
+#hero{position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:86vh;display:flex;flex-direction:column;justify-content:center;padding:74px max(28px,calc(50vw - 600px)) 96px;border-top:none;overflow:hidden;background:linear-gradient(90deg,#010C13 0%,rgba(1,12,19,.88) 22%,rgba(1,12,19,.45) 40%,transparent 56%),url('assets/images/hero-image.png') center right/cover no-repeat}
+.hero-content{position:relative;z-index:3;max-width:560px}
+.hero-logo{display:block;width:clamp(220px,23vw,310px);height:auto;margin-bottom:8px}
+.hero-bullets{position:absolute;right:calc(7% + 100px);top:50%;transform:translateY(-42%);z-index:3;display:flex;flex-direction:column;gap:20px;pointer-events:none}
+.hero-bullets img{display:block;width:clamp(160px,15vw,200px);height:auto}
+.hero-img-mobile{display:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+h1.hero-title{font-size:clamp(1.9rem,3.3vw,2.65rem);font-weight:600;letter-spacing:-.035em;line-height:1.12;margin-top:24px}
+.hero-sub{font-size:1.05rem;color:var(--t2);line-height:1.7;margin-top:22px;max-width:520px}
+.hero-mini{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-mini span{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--t2);background:var(--s1);border:1px solid var(--b1);padding:7px 13px;border-radius:999px}
+.hero-mini span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--mint)}
+
+/* HERO VISUAL MOCK */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hv-beams{position:absolute;inset:-40px;overflow:hidden;border-radius:24px;z-index:0;pointer-events:none}
+.hv-beams i{position:absolute;top:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--mint),transparent);animation:beam-fall 7s linear infinite}
+.hv-beams i:nth-child(1){left:20%;animation-duration:6s}
+.hv-beams i:nth-child(2){left:50%;animation-duration:8s;animation-delay:2s;background:linear-gradient(to bottom,transparent,var(--deep),transparent)}
+.hv-beams i:nth-child(3){left:78%;animation-duration:7s;animation-delay:3.5s}
+.mock{position:relative;z-index:2;width:100%;max-width:420px;background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(0,255,194,.06)}
+.mock-bar{display:flex;align-items:center;gap:6px;padding:13px 16px;border-bottom:1px solid var(--b1);background:rgba(0,0,0,.25)}
+.mock-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)}
+.mock-bar i:first-child{background:rgba(0,255,194,.6)}
+.mock-bar .url{margin-left:10px;font-size:10px;color:var(--t3);font-family:monospace;letter-spacing:.04em}
+.mock-body{padding:22px}
+.mock-hero{border-radius:12px;padding:20px;background:linear-gradient(135deg,rgba(0,255,194,.16),rgba(197,255,241,.04));border:1px solid rgba(0,255,194,.18);margin-bottom:16px}
+.mock-tag{font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:10px}
+.mock-line{height:9px;border-radius:5px;background:rgba(255,255,255,.16);margin-bottom:8px}
+.mock-line.w80{width:80%}.mock-line.w60{width:60%}.mock-line.w40{width:40%}
+.mock-btn{margin-top:14px;display:inline-block;font-size:10px;font-weight:600;color:#010C13;background:var(--mint);padding:7px 14px;border-radius:7px}
+.mock-rows{display:flex;flex-direction:column;gap:11px}
+.mock-rows .mock-line{margin:0}
+.float-badge{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(1,12,19,.85);backdrop-filter:blur(12px);border:1px solid rgba(0,255,194,.25);border-radius:12px;padding:10px 14px;font-size:.82rem;font-weight:500;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+.float-badge svg{width:16px;height:16px;color:var(--mint);stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.float-1{top:43%;left:51%}
+.float-2{bottom:14%;right:6%}
+.float-2 b{color:var(--mint);font-weight:600}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* AUTHORITY STRIP */
+.auth-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--b1);border-radius:18px;background:var(--s1);overflow:hidden}
+.auth-item{padding:26px 24px;border-left:1px solid var(--b1);display:flex;flex-direction:column;gap:6px}
+.auth-item:first-child{border-left:none}
+.auth-num{font-size:1.5rem;font-weight:600;letter-spacing:-.03em;line-height:1}
+.auth-txt{font-size:.84rem;color:var(--t2);line-height:1.5}
+
+/* SOLUTION / NUMBERED BLOCKS */
+.blocks{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.block{display:flex;gap:18px;background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:22px 24px}
+.block-num{flex:0 0 auto;font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--mint);border:1px solid rgba(0,255,194,.25);background:rgba(0,255,194,.06);border-radius:9px;padding:7px 10px;height:fit-content}
+.block-title{font-size:1.02rem;font-weight:600;margin-bottom:6px}
+.block-desc{font-size:.9rem;color:var(--t2);line-height:1.6}
+
+/* TIMELINE */
+.timeline{position:relative;margin-top:6px;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--mint),rgba(0,255,194,.15))}
+.tl-item{position:relative;padding-bottom:28px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-30px;top:2px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:2px solid var(--mint);box-shadow:0 0 0 4px rgba(0,255,194,.1)}
+.tl-day{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:6px}
+.tl-title{font-size:1.04rem;font-weight:600;margin-bottom:7px}
+.tl-desc{font-size:.92rem;color:var(--t2);line-height:1.6}
+
+/* PORTFOLIO */
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.port-card{border:1px solid var(--b1);border-radius:18px;overflow:hidden;background:var(--s1)}
+.port-thumb{aspect-ratio:16/11;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,rgba(0,255,194,.10),rgba(1,12,19,.4))}
+.port-thumb::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,rgba(0,255,194,.14),transparent 70%)}
+.port-mock{position:relative;z-index:1;width:72%;border-radius:9px;background:rgba(1,12,19,.6);border:1px solid rgba(255,255,255,.1);padding:12px;display:flex;flex-direction:column;gap:7px}
+.port-mock .ln{height:7px;border-radius:4px;background:rgba(255,255,255,.14)}
+.port-mock .ln.acc{background:linear-gradient(90deg,var(--mint),var(--mint-light));width:55%}
+.port-mock .ln.w70{width:70%}.port-mock .ln.w45{width:45%}
+.port-meta{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.port-meta .pm-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.port-meta .pm-title{font-size:.95rem;font-weight:500;margin-top:5px;color:var(--t1)}
+.port-arrow{flex:0 0 auto;color:var(--t3)}
+.port-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round}
+
+/* QUOTES */
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.quote{background:var(--s1);border:1px solid var(--b1);border-radius:18px;padding:26px;position:relative}
+.quote-mark{font-size:3rem;line-height:.6;color:rgba(0,255,194,.35);font-family:Georgia,serif;margin-bottom:6px}
+.quote-text{font-size:1.05rem;font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.quote-stars{display:flex;gap:3px;margin-top:18px;color:var(--mint)}
+.quote-stars svg{width:14px;height:14px;fill:currentColor}
+
+/* COMPARATIVE */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:50px}
+.cmp-panel{border-radius:20px;padding:30px;border:1px solid var(--b1);background:var(--s1)}
+.cmp-panel.good{border-color:rgba(0,255,194,.3);background:linear-gradient(180deg,rgba(0,255,194,.06),var(--s1));box-shadow:0 0 50px rgba(0,255,194,.07)}
+.cmp-head{display:flex;align-items:center;gap:11px;font-size:1.1rem;font-weight:600;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--b1)}
+.cmp-badge{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center}
+.cmp-badge.bad{background:rgba(255,90,90,.1);color:rgba(255,120,120,.95);border:1px solid rgba(255,90,90,.2)}
+.cmp-badge.win{background:rgba(0,255,194,.12);color:var(--mint);border:1px solid rgba(0,255,194,.25)}
+.cmp-badge svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cmp-list{display:flex;flex-direction:column;gap:13px}
+.cmp-li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;color:var(--t2)}
+.cmp-panel.good .cmp-li{color:var(--t1)}
+.cmp-li .ic{flex:0 0 18px;width:18px;height:18px;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.cmp-li .ic svg{width:16px;height:16px;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cmp-li.bad .ic{color:rgba(255,120,120,.85)}
+.cmp-li.win .ic{color:var(--mint)}
+
+/* FAQ */
+.faq-wrap{display:flex;flex-direction:column;gap:0;border:1px solid var(--b1);border-radius:18px;background:var(--s1);overflow:hidden}
+.faq-item{border-bottom:1px solid var(--b1)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:18px;width:100%;padding:22px 26px;background:none;border:none;color:#fff;font-size:1rem;font-weight:500;cursor:pointer;font-family:'Geist',sans-serif;text-align:left;transition:color .2s}
+.faq-q:hover{color:var(--mint)}
+.faq-icon{flex:0 0 auto;width:24px;height:24px;border-radius:7px;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;color:var(--mint);font-size:16px;transition:transform .3s,background .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(0,255,194,.1)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-a p{padding:0 26px 24px;color:var(--t2);font-size:.94rem;line-height:1.7;max-width:680px}
+
+/* FINAL CTA */
+#final{border-top:1px solid var(--b1)}
+.final-card{position:relative;border:1px solid rgba(0,255,194,.2);border-radius:28px;padding:84px 56px;min-height:480px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(90deg,#02110D 0%,rgba(2,17,13,.92) 34%,rgba(2,17,13,.45) 52%,transparent 72%),url('assets/images/cta-section-bg.png') center right/cover no-repeat}
+.final-card>*{position:relative;z-index:1}
+.final-title{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:600;letter-spacing:-.035em;line-height:1.1;max-width:560px;margin:0}
+.final-sub{font-size:1.05rem;color:var(--t2);line-height:1.65;max-width:460px;margin:22px 0 0}
+.final-ctas{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin-top:38px}
+.final-foot{font-size:.9rem;color:var(--t2);line-height:1.65;max-width:560px;margin:34px auto 0;padding-top:30px;border-top:1px solid var(--b1)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1px solid var(--b1)}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-inner p{font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.04em}
+
+/* REVEAL */
+.r{opacity:1;transform:none}
+
+/* DIVISORES DE SEÇÃO (cantos/extremos) */
+.divisor{position:absolute;z-index:4;pointer-events:none;line-height:0;display:block}
+.div-tl{top:0;left:0}
+.div-tr{top:0;right:0}
+.div-bl{bottom:0;left:0}
+.div-br{bottom:0;right:0}
+
+/* FAIXAS DIAGONAIS */
+.bands{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:210px;margin-top:-60px;margin-bottom:-46px;z-index:6;pointer-events:none}
+.band{position:absolute;left:-6vw;width:112vw;overflow:hidden;background:linear-gradient(90deg,#00FFC2,#C5FFF1);padding:13px 0;display:flex}
+.band-back{top:30px;transform:rotate(-2.91deg);filter:blur(5px);opacity:.85;z-index:1}
+.band-front{top:74px;transform:rotate(3.59deg);z-index:2;box-shadow:0 16px 44px rgba(0,0,0,.5)}
+.band-row{display:flex;align-items:center;white-space:nowrap}
+.bi{display:inline-flex;align-items:center;gap:14px;padding:0 22px;font-size:.92rem;font-weight:600;color:#06231C;letter-spacing:.01em}
+.bi::before{content:'';width:6px;height:6px;border-radius:50%;background:#06231C;flex:0 0 auto}
+
+/* SEÇÃO +500 (sem efeito de luz) */
+#autoridade-strip{background:#010C13}
+
+/* CAROUSEL */
+.carousel{position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-top:46px}
+.carousel-track{display:flex;overflow-x:auto;scroll-behavior:smooth;cursor:grab;scrollbar-width:none;padding:0 max(28px,calc(50vw - 552px)) 6px}
+.carousel-track.grabbing{cursor:grabbing;scroll-behavior:auto}
+.carousel-track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 auto;width:clamp(320px,42vw,560px);aspect-ratio:16/11;border-radius:18px;overflow:hidden;margin-right:18px;border:1px solid var(--b1);background:linear-gradient(135deg,rgba(0,255,194,.12),rgba(1,12,19,.55));display:flex;align-items:center;justify-content:center}
+.slide img{pointer-events:none}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide .ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--t3);font-size:11px;letter-spacing:.04em}
+.slide .ph svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+.car-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-right:max(28px,calc(50vw - 552px))}
+.car-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--b2);background:var(--s1);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s,color .2s;font-family:'Geist',sans-serif}
+.car-btn:hover{border-color:rgba(0,255,194,.5);background:rgba(0,255,194,.06);color:var(--mint)}
+.car-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* BIO */
+.bio{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;margin-top:50px}
+.bio-photo{aspect-ratio:4/5;border-radius:22px;overflow:hidden;border:1px solid var(--b1);background:linear-gradient(160deg,rgba(0,255,194,.16),rgba(1,12,19,.55));position:relative;display:flex;align-items:center;justify-content:center}
+.bio-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.bio-photo .ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--t3);font-size:11px}
+.bio-photo .ph svg{width:46px;height:46px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;opacity:.6}
+.bio-name{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.bio-role{color:var(--mint);font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.bio-text{color:var(--t2);font-size:1rem;line-height:1.72;margin-top:18px}
+.bio-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+
+/* SECTION BACKGROUNDS (alternância) */
+.sec-deep,.sec-light{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding-left:max(28px,calc(50vw - 552px));padding-right:max(28px,calc(50vw - 552px))}
+.sec-deep{background:#06181F}
+.sec-light{
+  background:#EDF9F4;color:#08221C;
+  --t1:#08221C;--t2:rgba(8,34,28,.64);--t3:rgba(8,34,28,.45);
+  --s1:rgba(6,40,33,.025);--s2:rgba(6,40,33,.05);--s3:rgba(6,40,33,.08);
+  --b1:rgba(6,40,33,.10);--b2:rgba(6,40,33,.18);
+  --mint:#00A98A;--mint-light:#00C9A0;
+}
+.sec-light .h2{color:#08221C}
+.sec-light .gradient-text{background:linear-gradient(90deg,#00A98A,#04795F 55%,#063F35);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sec-light .card{background:#fff;border-color:rgba(6,40,33,.08);box-shadow:0 1px 2px rgba(6,40,33,.05)}
+.sec-light .card-ico{background:rgba(0,169,138,.10);border-color:rgba(0,169,138,.20)}
+.sec-light .block{background:#fff;border-color:rgba(6,40,33,.08)}
+.sec-light .block-num{background:rgba(0,169,138,.08);border-color:rgba(0,169,138,.22)}
+.sec-light .badge{background:rgba(0,169,138,.10);border-color:rgba(0,169,138,.22)}
+.sec-light .btn-ghost:hover{border-color:rgba(0,169,138,.45);background:rgba(0,169,138,.06)}
+.sec-light .cmp-panel{background:#fff;border-color:rgba(6,40,33,.08)}
+.sec-light .cmp-panel.good{background:linear-gradient(180deg,rgba(0,169,138,.08),#fff);border-color:rgba(0,169,138,.30)}
+.sec-light .cmp-badge.win{background:rgba(0,169,138,.12);border-color:rgba(0,169,138,.25)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .wrap{padding:0 28px}
+  nav{padding:14px 28px}
+  .nav-urgency{white-space:normal;text-align:center;font-size:11.5px}
+  .two,.two.lean,.hero-grid{grid-template-columns:1fr;gap:44px}
+  .col-sticky{position:static}
+  .auth-strip{grid-template-columns:1fr 1fr}
+  .auth-item{border-left:none;border-top:1px solid var(--b1)}
+  .auth-item:first-child,.auth-item:nth-child(2){border-top:none}
+  .grid-3,.port-grid,.quote-grid{grid-template-columns:1fr 1fr}
+  .cmp{grid-template-columns:1fr}
+  .hero-visual{order:-1}
+  .float-1{left:-6px}.float-2{right:-6px}
+  .bio{grid-template-columns:1fr;gap:30px}
+  .bio-photo{max-width:380px;margin:0 auto}
+  #hero{min-height:auto;padding-top:36px;padding-bottom:56px;background:#010C13}
+  .hero-content{max-width:100%}
+  .float-badge,.hero-bullets{display:none}
+  .hero-img-mobile{display:block;width:100%;height:auto;border-radius:16px;margin:16px 0 26px}
+  .bands{height:140px;margin-top:-26px;margin-bottom:-24px}
+  .band-front{top:48px}.band-back{top:18px}
+  .bi{font-size:.78rem;padding:0 15px}
+}
+@media(max-width:620px){
+  .wrap{padding:0 20px}
+  section{padding:72px 0}
+  .grid-2,.grid-3,.port-grid,.quote-grid,.auth-strip{grid-template-columns:1fr}
+  #whitelabel .grid-3,#dor .grid-3{grid-template-columns:1fr 1fr;gap:12px}
+  #whitelabel .card,#dor .card{padding:18px 14px}
+  #whitelabel .card-ico,#dor .card-ico{margin-bottom:12px}
+  #whitelabel .card-title,#dor .card-title{font-size:.92rem}
+  .auth-item{border-top:1px solid var(--b1)!important}
+  .auth-item:first-child{border-top:none!important}
+  .final-card{padding:44px 24px;min-height:auto;background:linear-gradient(180deg,rgba(2,17,13,.5),#02110D 90%),url('assets/images/cta-section-bg.png') center/cover no-repeat}
+  .final-title,.final-sub{max-width:100%}
+  .nav-cta{display:none}
+  .foot-inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+
+<!-- NAV -->
+<nav>
+  <a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="nav-urgency">
+    <span class="pulse"></span>
+    <span>Ainda há espaço para projetos este mês. <b>Clique aqui</b> e garanta sua LP com prioridade.</span>
+  </a>
+</nav>
+
+<div class="wrap">
+
+<!-- 1. HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <img src="assets/logo/logo-tag-v2.svg" class="hero-logo r" alt="Verus Studio — Para agências e gestores de tráfego"/>
+    <img src="assets/images/heroimage-mobile.png" class="hero-img-mobile" alt="Verus Studio"/>
+    <h1 class="hero-title text-glow r">Landing pages e criativos prontos <span class="gradient-text">em até 4 dias</span> para sua campanha não ficar parada.</h1>
+    <p class="hero-sub r" style="margin-bottom:0">A Verus entra como parceira de produção e monta tudo que sua campanha precisa para ir ao ar:</p>
+    <div class="chk-list r">
+      <div class="chk"><span class="chk-ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span> Página, copy, design, criativos e publicação</div>
+      <div class="chk"><span class="chk-ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span> Tudo organizado para você vender melhor</div>
+      <div class="chk"><span class="chk-ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span> Entrega mais rápida, sem travar a operação do cliente</div>
+    </div>
+    <div class="cta-row r">
+      <a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como funciona</span></a>
+    </div>
+  </div>
+  <div class="hero-bullets" aria-hidden="true">
+    <img src="assets/bullets/entrega.svg" alt="Entrega em 4 dias"/>
+    <img src="assets/bullets/projetos.svg" alt="+500 Projetos Entregues"/>
+    <img src="assets/bullets/performance.svg" alt="Foco em Performance"/>
+  </div>
+</section>
+
+<!-- FAIXAS DIAGONAIS -->
+<div class="bands" aria-hidden="true">
+  <div class="band band-back"><div class="band-row">
+    <span class="bi">LP Estratégica</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Copy de Conversão</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Parceria White Label</span><span class="bi">LP Estratégica</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Copy de Conversão</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Parceria White Label</span><span class="bi">LP Estratégica</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Copy de Conversão</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Parceria White Label</span>
+  </div></div>
+  <div class="band band-front"><div class="band-row">
+    <span class="bi">Copy de Conversão</span><span class="bi">LP Estratégica</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Parceria White Label</span><span class="bi">Copy de Conversão</span><span class="bi">LP Estratégica</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Parceria White Label</span><span class="bi">Copy de Conversão</span><span class="bi">LP Estratégica</span><span class="bi">Entrega Rápida</span><span class="bi">Processo Claro</span><span class="bi">Criativos Alinhados com a Oferta</span><span class="bi">Parceria White Label</span>
+  </div></div>
+</div>
+
+<!-- 2. FAIXA DE AUTORIDADE -->
+<section id="autoridade-strip" class="sec-deep">
+  <div class="auth-strip r">
+    <div class="auth-item"><div class="auth-num gradient-text">+500</div><div class="auth-txt">projetos entregues</div></div>
+    <div class="auth-item"><div class="auth-num">LPs</div><div class="auth-txt">e criativos para campanhas reais</div></div>
+    <div class="auth-item"><div class="auth-num">100%</div><div class="auth-txt">processo pensado para agências e gestores</div></div>
+    <div class="auth-item"><div class="auth-num">1</div><div class="auth-txt">copy, design e publicação em uma só entrega</div></div>
+    <div class="auth-item"><div class="auth-num">∙∙∙</div><div class="auth-txt">atuação discreta como parceiro de bastidor</div></div>
+  </div>
+</section>
+
+<!-- 3. DOR -->
+<section id="dor">
+  <div class="two lean">
+    <div class="col-sticky">
+      <div class="sec-label r">A dor</div>
+      <h2 class="h2 r">Sua campanha não pode esperar uma página ficar pronta.</h2>
+    </div>
+    <div class="r">
+      <p class="support" style="margin-top:0">Esse atraso custa tempo, percepção de valor e oportunidade comercial. Enquanto a página não sai, a campanha não sobe. Enquanto os criativos não ficam prontos, o tráfego não roda. Enquanto tudo depende de improviso, sua entrega perde força.</p>
+    </div>
+  </div>
+  <div class="grid-3">
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="m8 21 8 0"/></svg></div><div class="card-title">Campanha aprovada</div><div class="card-desc">…mas sem página para enviar o tráfego.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="card-title">Cliente cobrando prazo</div><div class="card-desc">…enquanto a produção ainda está travada.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="card-title">Designer sobrecarregado</div><div class="card-desc">…com várias demandas ao mesmo tempo.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><div class="card-title">Gestor improvisando</div><div class="card-desc">…página, criativo e copy na correria.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div class="card-title">Anúncio rodando</div><div class="card-desc">…para uma estrutura fraca, confusa ou genérica.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div class="card-title">Agência perdendo velocidade</div><div class="card-desc">…por falta de braço operacional.</div></div>
+  </div>
+  <div class="r" style="margin-top:40px;background:rgba(0,255,194,.05);border:1px solid rgba(0,255,194,.16);border-radius:16px;padding:26px 28px;display:flex;align-items:center;justify-content:center;text-align:center;gap:16px;flex-wrap:wrap">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--mint)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+    <p style="font-size:1.02rem;color:var(--t1);font-weight:500;line-height:1.5">A Verus resolve essa parte para você. Com processo, direção e entrega pronta para colocar campanha no ar.</p>
+  </div>
+</section>
+
+<!-- 4. SOLUÇÃO -->
+<section id="solucao" class="sec-light">
+  <img src="assets/dividers/divisor-solucao-sup-esquerdo.svg" class="divisor div-tl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/divisor-solucao-inf-direito.svg" class="divisor div-br" alt="" aria-hidden="true"/>
+  <div class="two lean">
+    <div class="col-sticky">
+      <div class="sec-label r">A solução</div>
+      <h2 class="h2 r">A Verus entra como <span class="gradient-text">extensão criativa</span> da sua operação.</h2>
+      <p class="lead r">Nossa função é simples: tirar a estrutura da campanha do campo das ideias e colocar no ar. Organizamos a oferta, construímos a narrativa da página, desenhamos a experiência visual, criamos os criativos necessários e deixamos tudo pronto para você apresentar, aprovar e subir a campanha.</p>
+      <div class="cta-row r"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como aceleram minha campanha</span></a></div>
+    </div>
+    <div class="blocks">
+      <div class="block r"><div class="block-num">01</div><div><div class="block-title">Copy que organiza a oferta</div><div class="block-desc">Transformamos informações soltas em uma mensagem clara, com promessa, argumentos, diferenciais e chamadas para ação.</div></div></div>
+      <div class="block r"><div class="block-num">02</div><div><div class="block-title">Design pensado para conversão</div><div class="block-desc">Criamos páginas bonitas, mas com objetivo comercial. Hierarquia, leitura, contraste, CTA e estrutura visual pensados para o usuário agir.</div></div></div>
+      <div class="block r"><div class="block-num">03</div><div><div class="block-title">Criativos alinhados com a campanha</div><div class="block-desc">As peças de anúncio seguem a mesma linha da página, para manter coerência entre tráfego, promessa e destino do lead.</div></div></div>
+      <div class="block r"><div class="block-num">04</div><div><div class="block-title">Publicação e ajustes finais</div><div class="block-desc">A página é desenvolvida, ajustada no mobile e preparada para entrar no ar com os pontos principais da campanha organizados.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PROCESSO -->
+<section id="processo" class="sec-deep">
+  <div class="two lean">
+    <div class="col-sticky">
+      <div class="sec-label r">O processo</div>
+      <h2 class="h2 r">Da oferta ao link publicado <span class="gradient-text">em até 4 dias</span> de produção.</h2>
+      <p class="lead r">Um processo direto para sua campanha não ficar parada esperando design, copy ou desenvolvimento.</p>
+      <div class="cta-row r"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como entregam em 4 dias</span></a></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item r"><div class="tl-dot"></div><div class="tl-day">Dia 1</div><div class="tl-title">Briefing e direção estratégica</div><div class="tl-desc">Entendemos a oferta, público, objetivo da campanha, referências, diferenciais do cliente e materiais disponíveis. Aqui definimos o caminho da página e dos criativos.</div></div>
+      <div class="tl-item r"><div class="tl-dot"></div><div class="tl-day">Dia 2</div><div class="tl-title">Copy e estrutura da landing page</div><div class="tl-desc">Organizamos a narrativa da página: promessa, seções, argumentos, CTAs, objeções e pontos de conversão. A ideia é deixar a oferta clara para quem chega pelo anúncio.</div></div>
+      <div class="tl-item r"><div class="tl-dot"></div><div class="tl-day">Dia 3</div><div class="tl-title">Design da LP e criativos</div><div class="tl-desc">Criamos o visual da landing page e as peças principais para tráfego. Tudo seguindo a mesma direção visual e comercial da campanha.</div></div>
+      <div class="tl-item r"><div class="tl-dot"></div><div class="tl-day">Dia 4</div><div class="tl-title">Desenvolvimento e publicação</div><div class="tl-desc">Finalizamos a versão responsiva, fazemos os ajustes finais e deixamos a página pronta para ser usada na campanha.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PARA QUEM É -->
+<section id="paraquem" class="sec-light">
+  <img src="assets/dividers/pra-quem-sup-direito.svg" class="divisor div-tr" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/pra-quem-inf-esquerdo.svg" class="divisor div-bl" alt="" aria-hidden="true"/>
+  <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="sec-label r" style="justify-content:center">Para quem é</div>
+    <h2 class="h2 r">Feito para quem precisa entregar rápido sem perder qualidade.</h2>
+    <p class="lead r">A Verus é para profissionais e empresas que vendem campanhas, mas precisam de uma estrutura pronta para colocar a estratégia em prática.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg></div>
+      <div class="card-title">Para agências</div>
+      <div class="card-desc">Que precisam escalar entregas sem sobrecarregar o time interno. A Verus entra como parceira de produção para páginas e criativos, mantendo sua operação mais leve.</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+      <div class="card-title">Para gestores de tráfego</div>
+      <div class="card-desc">Que fecham campanhas, mas precisam de uma landing page e peças de anúncio para colocar o projeto no ar com mais velocidade e profissionalismo.</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg></div>
+      <div class="card-title">Para social medias e estrategistas</div>
+      <div class="card-desc">Que querem entregar uma solução mais completa para seus clientes, conectando conteúdo, tráfego, página e conversão em uma estrutura mais profissional.</div>
+    </div>
+  </div>
+  <div class="cta-row r" style="justify-content:center;margin-top:44px"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber se funciona pra mim</span></a></div>
+</section>
+
+<!-- 7. AUTORIDADE -->
+<section id="autoridade" class="sec-deep">
+  <div class="two lean">
+    <div class="col-sticky">
+      <div class="sec-label r">Autoridade</div>
+      <h2 class="h2 r"><span class="gradient-text">Mais de 500 projetos</span> entregues para negócios que precisam vender melhor no digital.</h2>
+      <p class="lead r">Landing pages, sites, criativos e campanhas em diferentes segmentos. Experiência que nos faz entender rápido o que sua campanha precisa: oferta clara, página bem construída, criativos consistentes e entrega sem retrabalho infinito.</p>
+    </div>
+    <div class="blocks">
+      <div class="block r"><div class="block-num" style="border-radius:11px">🏢</div><div><div class="block-title">Imobiliário</div><div class="block-desc">Landing pages para lançamentos, captação de leads e campanhas de imóveis.</div></div></div>
+      <div class="block r"><div class="block-num" style="border-radius:11px">🩺</div><div><div class="block-title">Saúde e estética</div><div class="block-desc">Páginas e criativos para clínicas, profissionais liberais e negócios de atendimento.</div></div></div>
+      <div class="block r"><div class="block-num" style="border-radius:11px">💼</div><div><div class="block-title">Serviços</div><div class="block-desc">Estruturas comerciais para empresas que vendem por WhatsApp, formulário ou reunião.</div></div></div>
+      <div class="block r"><div class="block-num" style="border-radius:11px">🎓</div><div><div class="block-title">Educação e infoprodutos</div><div class="block-desc">Páginas para inscrição, lançamento, venda e captação.</div></div></div>
+      <div class="block r"><div class="block-num" style="border-radius:11px">📍</div><div><div class="block-title">Negócios locais</div><div class="block-desc">Criativos e páginas para campanhas regionais com foco em geração de oportunidades.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PORTFÓLIO -->
+<section id="portfolio">
+  <div class="two lean" style="gap:40px;align-items:end">
+    <div>
+      <div class="sec-label r">Portfólio visual</div>
+      <h2 class="h2 r">Algumas estruturas que já colocamos no ar.</h2>
+    </div>
+    <p class="lead r" style="margin-top:0">Projetos criados para transformar uma oferta em uma página clara, visualmente forte e pronta para campanha.</p>
+  </div>
+  <div class="carousel">
+    <div class="carousel-track" id="portTrack">
+      <div class="slide"><img src="assets/projects/3ads%201.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/3ads%204.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/3ads%205.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/avus%2001.jpg" alt="Projeto Avus" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/carlos%201.jpg" alt="Projeto Carlos" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/carlos%205.jpg" alt="Projeto Carlos" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/cota-bem01.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/cota-bem02.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/cota-bem04.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/cota-bem05.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/netto%201.jpg" alt="Projeto Netto" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/trust%2002.jpg" alt="Projeto Trust" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/trust%2005.jpg" alt="Projeto Trust" loading="lazy"/></div>
+      <div class="slide"><img src="assets/projects/trust%208.jpg" alt="Projeto Trust" loading="lazy"/></div>
+    </div>
+    <div class="car-btns">
+      <button class="car-btn" onclick="scrollCarousel('portTrack',-1)" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="car-btn" onclick="scrollCarousel('portTrack',1)" aria-label="Próximo"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- 9. DIFERENCIAIS -->
+<section id="diferenciais" class="sec-light">
+  <img src="assets/dividers/Diferenciais-sup-esquerdo.svg" class="divisor div-tl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/Diferenciais-sup-direito.svg" class="divisor div-tr" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/Diferenciais-inf-esquerdo.svg" class="divisor div-bl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/Diferenciais-inf-direito.svg" class="divisor div-br" alt="" aria-hidden="true"/>
+  <div class="two lean" style="align-items:end;gap:40px">
+    <div>
+      <div class="sec-label r">Diferenciais</div>
+      <h2 class="h2 r">O que faz a Verus ser diferente de só contratar alguém para fazer uma página.</h2>
+    </div>
+    <p class="lead r" style="margin-top:0">Não entregamos apenas uma tela bonita. Entramos para organizar a campanha visualmente e comercialmente, com foco naquilo que o usuário precisa entender para tomar uma decisão.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/><path d="M9 22h6"/></svg></div><div class="card-title">Pensamento de campanha</div><div class="card-desc">A página é criada considerando o tráfego, a promessa do anúncio, o público e a ação esperada do lead.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><div class="card-title">Copy junto com design</div><div class="card-desc">A mensagem e o visual são construídos juntos, para evitar uma página bonita que não explica bem a oferta.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div class="card-title">Entrega rápida com processo</div><div class="card-desc">Você sabe o que precisa enviar, o que será produzido e em qual etapa o projeto está.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M12 2 15 8.5 22 9.3l-5 4.8 1.2 7L12 18l-6.2 3 1.2-7-5-4.8 7-.8z"/></svg></div><div class="card-title">Visual profissional</div><div class="card-desc">A entrega melhora a percepção de valor da sua agência, da sua gestão e do cliente final.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="card-title">Comunicação objetiva</div><div class="card-desc">Menos ruído, menos bagunça e mais clareza durante a produção.</div></div>
+    <div class="card r"><div class="card-ico"><svg viewBox="0 0 24 24"><path d="M20 7h-9M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div><div class="card-title">Parceria de bastidor</div><div class="card-desc">Podemos atuar de forma discreta, sem disputar o relacionamento com o seu cliente.</div></div>
+  </div>
+  <div class="cta-row r" style="justify-content:center;margin-top:46px"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber o que muda na prática</span></a></div>
+</section>
+
+<!-- 10. WHITE LABEL -->
+<section id="whitelabel" class="sec-deep">
+  <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="sec-label r" style="justify-content:center">Parceria white label</div>
+    <h2 class="h2 r">Você vende a campanha. A Verus entrega a estrutura <span class="gradient-text">nos bastidores</span>.</h2>
+    <p class="lead r">Se sua agência ou operação precisa de apoio sem expor fornecedores, atuamos como parceiro white label: você mantém o relacionamento com o cliente e a Verus cuida da produção da landing page e dos criativos.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Atuação discreta como parceiro de produção</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Entrega alinhada com a sua operação</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Possibilidade de recorrência mensal</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Comunicação organizada por projeto</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Sem interferir na sua negociação</div>
+    </div>
+    <div class="card r" style="text-align:center">
+      <div class="card-ico" style="margin:0 auto 16px"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div>
+      <div class="card-title" style="font-size:1rem;margin:0">Mais velocidade para sua agência entregar</div>
+    </div>
+  </div>
+  <div class="cta-row r" style="justify-content:center;margin-top:44px"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como funciona o white label</span></a></div>
+</section>
+
+<!-- 11. DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="two lean" style="align-items:end;gap:40px">
+    <div>
+      <div class="sec-label r">Depoimentos</div>
+      <h2 class="h2 r">O que parceiros e clientes dizem sobre nossas entregas.</h2>
+    </div>
+    <p class="lead r" style="margin-top:0">Feedbacks de quem precisava tirar uma ideia do papel e transformar em uma estrutura pronta para vender, captar leads ou lançar uma campanha.</p>
+  </div>
+  <div class="quote-grid">
+    <div class="quote r"><div class="quote-mark">"</div><div class="quote-text">Ficou muito acima do que imaginei.</div><div class="quote-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg></div></div>
+    <div class="quote r"><div class="quote-mark">"</div><div class="quote-text">Conseguimos subir a campanha com muito mais velocidade.</div><div class="quote-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg></div></div>
+    <div class="quote r"><div class="quote-mark">"</div><div class="quote-text">A página ficou clara, bonita e fácil de apresentar para o cliente.</div><div class="quote-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg></div></div>
+    <div class="quote r"><div class="quote-mark">"</div><div class="quote-text">Agora temos uma estrutura profissional para anunciar.</div><div class="quote-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg></div></div>
+    <div class="quote r"><div class="quote-mark">"</div><div class="quote-text">Organizou a oferta de um jeito que o cliente entendeu melhor.</div><div class="quote-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.8-5 4.8 1.3 6.8L12 18.6 5.8 22l1.3-6.8-5-4.8 6.9-.8z"/></svg></div></div>
+    <div class="quote r" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,rgba(0,255,194,.08),rgba(1,12,19,.2));border-color:rgba(0,255,194,.2)"><div class="quote-text" style="margin-bottom:18px">Quero esse padrão de entrega.</div><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid" style="width:fit-content"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como entregam assim</span></a></div>
+  </div>
+</section>
+
+<!-- 12. COMPARATIVO -->
+<section id="comparativo" class="sec-light">
+  <img src="assets/dividers/comparativo-sup-esquerdo.svg" class="divisor div-tl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/comparativo-sup-direito.svg" class="divisor div-tr" alt="" aria-hidden="true"/>
+  <div style="text-align:center;max-width:680px;margin:0 auto">
+    <div class="sec-label r" style="justify-content:center">Comparativo</div>
+    <h2 class="h2 r">A diferença entre subir campanha no improviso e subir com estrutura.</h2>
+  </div>
+  <div class="cmp">
+    <div class="cmp-panel r">
+      <div class="cmp-head"><span class="cmp-badge bad"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span> Quando tudo fica solto</div>
+      <div class="cmp-list">
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Página atrasada</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Criativos feitos na correria</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Oferta confusa</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Cliente cobrando prazo</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Gestor acumulando função</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Campanha demorando para ir ao ar</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Visual sem padrão</div>
+        <div class="cmp-li bad"><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Tráfego apontando para uma página fraca</div>
+      </div>
+    </div>
+    <div class="cmp-panel good r">
+      <div class="cmp-head"><span class="cmp-badge win"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span> Quando a Verus entra no projeto</div>
+      <div class="cmp-list">
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>LP planejada para a campanha</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Criativos alinhados com a oferta</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Copy organizada</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Prazo claro de produção</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Mais velocidade para aprovar</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Mais profissionalismo na entrega</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Página pronta para mobile</div>
+        <div class="cmp-li win"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Estrutura preparada para gerar leads</div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-row r" style="justify-content:center;margin-top:44px"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como sair do improviso</span></a></div>
+</section>
+
+<!-- 13. FAQ -->
+<section id="faq" class="sec-deep">
+  <img src="assets/dividers/faq-sup-esquerdo.svg" class="divisor div-tl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/faq-sup-direito.svg" class="divisor div-tr" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/faq-inferior-esquerdo.svg" class="divisor div-bl" alt="" aria-hidden="true"/>
+  <img src="assets/dividers/faq-inferior-direito.svg" class="divisor div-br" alt="" aria-hidden="true"/>
+  <div class="two lean">
+    <div class="col-sticky">
+      <div class="sec-label r">FAQ</div>
+      <h2 class="h2 r">Perguntas frequentes.</h2>
+      <p class="lead r">Tudo que parceiros e gestores costumam perguntar antes de começar uma parceria com a Verus.</p>
+      <div class="cta-row r"><a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero tirar uma dúvida</span></a></div>
+    </div>
+    <div class="faq-wrap r">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vocês atendem white label?<span class="faq-icon">+</span></button><div class="faq-a"><p>Sim. Podemos atuar nos bastidores da sua agência ou operação. Você mantém o relacionamento com o cliente e a Verus entra como parceira de produção.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">A entrega é realmente em até 4 dias?<span class="faq-icon">+</span></button><div class="faq-a"><p>Sim, considerando envio completo do briefing, materiais e aprovações dentro do prazo combinado. Caso haja excesso de alterações, atraso na aprovação ou o cliente não aprove alguma etapa, o prazo é estendido conforme a necessidade do projeto.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vocês fazem só a landing page ou também os anúncios?<span class="faq-icon">+</span></button><div class="faq-a"><p>Podemos fazer os dois. A entrega pode incluir a landing page e as peças criativas para anúncios, de acordo com o escopo combinado.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vocês escrevem a copy da página?<span class="faq-icon">+</span></button><div class="faq-a"><p>Sim. Estruturamos a copy da landing page com foco em clareza, oferta e conversão. A ideia é transformar as informações do cliente em uma mensagem mais direta e comercial.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">A página é publicada onde?<span class="faq-icon">+</span></button><div class="faq-a"><p>Depende da estrutura do projeto. Podemos trabalhar com WordPress, Elementor, Wix Studio ou outra plataforma combinada antes da produção.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso já ter todos os textos prontos?<span class="faq-icon">+</span></button><div class="faq-a"><p>Não. Você precisa enviar as informações principais da oferta, público, objetivo, diferenciais e referências. A Verus organiza isso em formato de copy e estrutura de página.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vocês também atendem demandas recorrentes?<span class="faq-icon">+</span></button><div class="faq-a"><p>Sim. Para agências e gestores com volume de campanhas, podemos combinar um modelo de parceria recorrente.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Vocês falam direto com meu cliente?<span class="faq-icon">+</span></button><div class="faq-a"><p>Pode ser feito dos dois jeitos. Podemos falar apenas com você ou participar de forma controlada no atendimento, caso isso facilite o briefing e a aprovação.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13.5 QUEM ESTÁ POR TRÁS -->
+<section id="quemsomos">
+  <div class="bio">
+    <div class="bio-photo">
+      <img src="assets/images/bio-foto.png" alt="Quem está por trás da Verus Studio"/>
+    </div>
+    <div>
+      <div class="sec-label r">Bastidores</div>
+      <h2 class="h2 r">Quem está por trás da <span class="gradient-text">Verus</span>.</h2>
+      <div class="bio-name r">João Pedro Junqueira</div>
+      <div class="bio-role r">Fundador · Verus Studio</div>
+      <p class="bio-text r">Passei anos no mercado digital como designer, editor de vídeo e webdesigner — boa parte dentro de agência e atendendo gestores de tráfego. Foi ali que vi o mesmo gargalo se repetir: a campanha trava porque falta quem produza a página e os criativos com agilidade.</p>
+      <p class="bio-text r">Criei a Verus pra resolver isso sem dor de cabeça. Sem o risco do freelancer que some no meio do projeto e sem o custo de um funcionário fixo que enrola pra entregar. Você passa a ter uma estrutura de produção pronta, com processo e direção, funcionando como uma extensão do seu time.</p>
+      <p class="bio-text r">E sem pesar no bolso: a entrega custa uma fração do contrato. Menos de um quarto de uma mensalidade do seu cliente já paga a estrutura dele por vários meses.</p>
+      <div class="bio-chips r">
+        <span class="badge">+500 projetos entregues</span>
+        <span class="badge">Landing pages e criativos</span>
+        <span class="badge">Foco em conversão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. CTA FINAL -->
+<section id="final">
+  <div class="final-card r">
+    <h2 class="final-title">Pare de atrasar campanha por <span class="gradient-text">falta de página e criativo</span>.</h2>
+    <p class="final-sub">Tenha uma estrutura pronta para apresentar, aprovar e subir a campanha do seu cliente com mais velocidade.</p>
+    <div class="final-ctas">
+      <a href="https://wa.me/5562982593937?text=Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%21" target="_blank" rel="noopener" class="btn-solid"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg><span>Quero saber como funciona</span></a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap"><div class="foot-inner">
+    <img src="assets/logo/logo-tag-v2.svg" alt="Verus Studio — Para agências e gestores de tráfego" style="height:36px;width:auto;display:block"/>
+    <p>© Verus Studio — Landing pages e criativos para agências, gestores de tráfego e estrategistas.</p>
+  </div></div>
+</footer>
+
+<script>
+function scrollCarousel(id,dir){
+  var t=document.getElementById(id);
+  if(!t)return;
+  var slide=t.querySelector('.slide');
+  var step=slide?slide.getBoundingClientRect().width+18:360;
+  t._idle=((window.performance&&performance.now)?performance.now():Date.now())+1000;
+  t.scrollBy({left:dir*step,behavior:'smooth'});
+}
+// Carrossel: autoplay contínuo + arraste (mouse) + loop infinito
+(function(){
+  var track=document.getElementById('portTrack');
+  if(!track)return;
+  var originals=Array.prototype.slice.call(track.children);
+  originals.forEach(function(s){ track.appendChild(s.cloneNode(true)); });
+  var loopW=0, SPEED=1.3, pos=0, dragging=false, startX=0, startScroll=0, inView=true;
+  function nowt(){ return (window.performance&&performance.now)?performance.now():Date.now(); }
+  function calc(){ var w=0; originals.forEach(function(s){ w+=s.getBoundingClientRect().width+18; }); loopW=w; }
+  if('IntersectionObserver' in window){
+    inView=false;
+    new IntersectionObserver(function(es){ es.forEach(function(en){ inView=en.isIntersecting; }); },{threshold:0.04}).observe(track);
+  }
+  function tick(){
+    var auto = inView && !dragging && nowt()>(track._idle||0);
+    if(auto){
+      pos+=SPEED;
+      if(loopW>0 && pos>=loopW) pos-=loopW;
+      track.scrollLeft=pos;
+    } else {
+      pos=track.scrollLeft; // sincroniza com o controle do usuário
+      if(loopW>0 && pos>=loopW){ pos-=loopW; track.scrollLeft=pos; }
+    }
+    requestAnimationFrame(tick);
+  }
+  track.addEventListener('pointerdown',function(e){
+    track._idle=nowt()+1000;
+    if(e.pointerType!=='mouse')return;
+    dragging=true; startX=e.clientX; startScroll=track.scrollLeft;
+    track.classList.add('grabbing');
+    if(track.setPointerCapture){ try{track.setPointerCapture(e.pointerId);}catch(_){} }
+  });
+  track.addEventListener('pointermove',function(e){
+    if(!dragging)return;
+    var nl=startScroll-(e.clientX-startX);
+    if(loopW>0){ if(nl<0){ nl+=loopW; startScroll+=loopW; } else if(nl>=loopW){ nl-=loopW; startScroll-=loopW; } }
+    track.scrollLeft=nl;
+  });
+  function endDrag(){ if(dragging){ dragging=false; track._idle=nowt()+1000; track.classList.remove('grabbing'); } }
+  track.addEventListener('pointerup',endDrag);
+  track.addEventListener('pointercancel',endDrag);
+  track.addEventListener('pointerleave',endDrag);
+  track.addEventListener('wheel',function(){ track._idle=nowt()+1000; },{passive:true});
+  track.addEventListener('touchstart',function(){ track._idle=nowt()+1000; },{passive:true});
+  track.addEventListener('touchmove',function(){ track._idle=nowt()+1000; },{passive:true});
+  calc();
+  window.addEventListener('resize',calc,{passive:true});
+  requestAnimationFrame(tick);
+})();
+function toggleFaq(btn){
+  var item=btn.parentElement;
+  var body=item.querySelector('.faq-a');
+  var open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight='0px';
+  });
+  if(!open){
+    item.classList.add('open');
+    body.style.maxHeight=body.scrollHeight+'px';
+  }
+}
+// Reveal on scroll
+(function(){
+  var els=document.querySelectorAll('.r');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+// Blur progressivo das faixas ao sair pelo topo
+(function(){
+  var bands=document.querySelector('.bands');
+  if(!bands)return;
+  var front=bands.querySelector('.band-front');
+  var back=bands.querySelector('.band-back');
+  var MAX=16, ticking=false;
+  function update(){
+    ticking=false;
+    var r=bands.getBoundingClientRect();
+    var h=r.height||1;
+    var p=r.top<0 ? Math.min(1,-r.top/h) : 0;
+    var extra=p*MAX;
+    if(front) front.style.filter = p>0 ? 'blur('+extra.toFixed(2)+'px)' : '';
+    if(back) back.style.filter = 'blur('+(5+extra).toFixed(2)+'px)';
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  update();
+})();
+</script>
+</body>
+</html>
