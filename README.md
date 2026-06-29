@@ -44,11 +44,17 @@ git push -u origin main
 2. Em **Clone URL**, cole `https://github.com/verus-std/verus-para-agencias.git`.
 3. Defina o diretório do repositório (ex.: `/home/USUARIO/repositories/verus-para-agencias`).
 4. Após clonar, clique em **Manage → Pull or Deploy → Update from Remote** e depois **Deploy HEAD Commit**.
-5. O `.cpanel.yml` copia o `index.html` e a pasta `assets/` para `~/public_html`.
+5. O `.cpanel.yml` copia o `index.html` e a pasta `assets/` para `~/public_html/para-agencias`.
+
+Com essa configuração, a landing fica disponível em:
+
+```text
+https://SEU_DOMINIO.com.br/para-agencias/
+```
 
 A cada novo push no GitHub, repita o **Update from Remote** + **Deploy HEAD Commit** (ou configure deploy automático por webhook).
 
-> Se a sua landing for de um subdomínio/addon domain, troque `$HOME/public_html` no `.cpanel.yml` pelo document root correto (ex.: `$HOME/lp.seudominio.com`).
+> Se a landing precisar ficar em outro caminho, troque `$HOME/public_html/para-agencias` no `.cpanel.yml` pelo document root correto.
 
 ## Segurança
 
