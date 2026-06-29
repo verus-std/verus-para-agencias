@@ -62,6 +62,6 @@ A cada novo push no GitHub, repita o **Update from Remote** + **Deploy HEAD Comm
 - O número de WhatsApp nos botões é um dado de contato público (intencional).
 - `.gitignore` bloqueia `.env`, chaves e arquivos de sistema, evitando commits acidentais de dados sensíveis.
 
-## Observação de performance (opcional)
+## Performance
 
-`assets/images/hero-image.png` é grande (~2,4 MB). Para acelerar o carregamento, vale comprimir/converter as imagens para WebP antes de publicar.
+As imagens principais possuem versões WebP otimizadas. O HTML usa WebP em navegadores modernos e mantém PNG/JPG como fallback.

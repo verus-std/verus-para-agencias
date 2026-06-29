@@ -4,6 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Verus Studio — Landing pages e criativos prontos em até 4 dias</title>
+<link rel="preload" as="image" href="assets/images/hero-image.webp" type="image/webp" media="(min-width: 901px)"/>
+<link rel="preload" as="image" href="assets/images/heroimage-mobile.webp" type="image/webp" media="(max-width: 900px)"/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -107,12 +109,13 @@ section{position:relative;z-index:1;padding:104px 0;border-top:1px solid var(--b
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
 
 /* HERO */
-#hero{position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:86vh;display:flex;flex-direction:column;justify-content:center;padding:74px max(28px,calc(50vw - 600px)) 96px;border-top:none;overflow:hidden;background:linear-gradient(90deg,#010C13 0%,rgba(1,12,19,.88) 22%,rgba(1,12,19,.45) 40%,transparent 56%),url('assets/images/hero-image.png') center right/cover no-repeat}
+#hero{position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:86vh;display:flex;flex-direction:column;justify-content:center;padding:74px max(28px,calc(50vw - 600px)) 96px;border-top:none;overflow:hidden;background:linear-gradient(90deg,#010C13 0%,rgba(1,12,19,.88) 22%,rgba(1,12,19,.45) 40%,transparent 56%),image-set(url('assets/images/hero-image.webp') type('image/webp'),url('assets/images/hero-image.png') type('image/png')) center right/cover no-repeat}
 .hero-content{position:relative;z-index:3;max-width:560px}
 .hero-logo{display:block;width:clamp(220px,23vw,310px);height:auto;margin-bottom:8px}
 .hero-bullets{position:absolute;right:calc(7% + 100px);top:50%;transform:translateY(-42%);z-index:3;display:flex;flex-direction:column;gap:20px;pointer-events:none}
 .hero-bullets img{display:block;width:clamp(160px,15vw,200px);height:auto}
 .hero-img-mobile{display:none}
+.hero-img-mobile img{display:block;width:100%;height:auto}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 h1.hero-title{font-size:clamp(1.9rem,3.3vw,2.65rem);font-weight:600;letter-spacing:-.035em;line-height:1.12;margin-top:24px}
 .hero-sub{font-size:1.05rem;color:var(--t2);line-height:1.7;margin-top:22px;max-width:520px}
@@ -224,7 +227,7 @@ h1.hero-title{font-size:clamp(1.9rem,3.3vw,2.65rem);font-weight:600;letter-spaci
 
 /* FINAL CTA */
 #final{border-top:1px solid var(--b1)}
-.final-card{position:relative;border:1px solid rgba(0,255,194,.2);border-radius:28px;padding:84px 56px;min-height:480px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(90deg,#02110D 0%,rgba(2,17,13,.92) 34%,rgba(2,17,13,.45) 52%,transparent 72%),url('assets/images/cta-section-bg.png') center right/cover no-repeat}
+.final-card{position:relative;border:1px solid rgba(0,255,194,.2);border-radius:28px;padding:84px 56px;min-height:480px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(90deg,#02110D 0%,rgba(2,17,13,.92) 34%,rgba(2,17,13,.45) 52%,transparent 72%),image-set(url('assets/images/cta-section-bg.webp') type('image/webp'),url('assets/images/cta-section-bg.png') type('image/png')) center right/cover no-repeat}
 .final-card>*{position:relative;z-index:1}
 .final-title{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:600;letter-spacing:-.035em;line-height:1.1;max-width:560px;margin:0}
 .final-sub{font-size:1.05rem;color:var(--t2);line-height:1.65;max-width:460px;margin:22px 0 0}
@@ -264,6 +267,7 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
 .carousel-track.grabbing{cursor:grabbing;scroll-behavior:auto}
 .carousel-track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 auto;width:clamp(320px,42vw,560px);aspect-ratio:16/11;border-radius:18px;overflow:hidden;margin-right:18px;border:1px solid var(--b1);background:linear-gradient(135deg,rgba(0,255,194,.12),rgba(1,12,19,.55));display:flex;align-items:center;justify-content:center}
+.slide picture{width:100%;height:100%;display:block}
 .slide img{pointer-events:none}
 .slide img{width:100%;height:100%;object-fit:cover;display:block}
 .slide .ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--t3);font-size:11px;letter-spacing:.04em}
@@ -276,6 +280,7 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
 /* BIO */
 .bio{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;margin-top:50px}
 .bio-photo{aspect-ratio:4/5;border-radius:22px;overflow:hidden;border:1px solid var(--b1);background:linear-gradient(160deg,rgba(0,255,194,.16),rgba(1,12,19,.55));position:relative;display:flex;align-items:center;justify-content:center}
+.bio-photo picture{width:100%;height:100%;display:block}
 .bio-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .bio-photo .ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--t3);font-size:11px}
 .bio-photo .ph svg{width:46px;height:46px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;opacity:.6}
@@ -325,7 +330,7 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
   #hero{min-height:auto;padding-top:36px;padding-bottom:56px;background:#010C13}
   .hero-content{max-width:100%}
   .float-badge,.hero-bullets{display:none}
-  .hero-img-mobile{display:block;width:100%;height:auto;border-radius:16px;margin:16px 0 26px}
+  .hero-img-mobile{display:block;width:100%;height:auto;border-radius:16px;overflow:hidden;margin:16px 0 26px}
   .bands{height:140px;margin-top:-26px;margin-bottom:-24px}
   .band-front{top:48px}.band-back{top:18px}
   .bi{font-size:.78rem;padding:0 15px}
@@ -340,7 +345,7 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
   #whitelabel .card-title,#dor .card-title{font-size:.92rem}
   .auth-item{border-top:1px solid var(--b1)!important}
   .auth-item:first-child{border-top:none!important}
-  .final-card{padding:44px 24px;min-height:auto;background:linear-gradient(180deg,rgba(2,17,13,.5),#02110D 90%),url('assets/images/cta-section-bg.png') center/cover no-repeat}
+  .final-card{padding:44px 24px;min-height:auto;background:linear-gradient(180deg,rgba(2,17,13,.5),#02110D 90%),image-set(url('assets/images/cta-section-bg.webp') type('image/webp'),url('assets/images/cta-section-bg.png') type('image/png')) center/cover no-repeat}
   .final-title,.final-sub{max-width:100%}
   .nav-cta{display:none}
   .foot-inner{flex-direction:column;text-align:center}
@@ -365,7 +370,10 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
 <section id="hero">
   <div class="hero-content">
     <img src="assets/logo/logo-tag-v2.svg" class="hero-logo r" alt="Verus Studio — Para agências e gestores de tráfego"/>
-    <img src="assets/images/heroimage-mobile.png" class="hero-img-mobile" alt="Verus Studio"/>
+    <picture class="hero-img-mobile">
+      <source srcset="assets/images/heroimage-mobile.webp" type="image/webp"/>
+      <img src="assets/images/heroimage-mobile.png" alt="Verus Studio" width="1000" height="789" fetchpriority="high"/>
+    </picture>
     <h1 class="hero-title text-glow r">Landing pages e criativos prontos <span class="gradient-text">em até 4 dias</span> para sua campanha não ficar parada.</h1>
     <p class="hero-sub r" style="margin-bottom:0">A Verus entra como parceira de produção e monta tudo que sua campanha precisa para ir ao ar:</p>
     <div class="chk-list r">
@@ -526,20 +534,20 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
   </div>
   <div class="carousel">
     <div class="carousel-track" id="portTrack">
-      <div class="slide"><img src="assets/projects/3ads%201.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/3ads%204.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/3ads%205.jpg" alt="Projeto 3ADS" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/avus%2001.jpg" alt="Projeto Avus" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/carlos%201.jpg" alt="Projeto Carlos" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/carlos%205.jpg" alt="Projeto Carlos" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/cota-bem01.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/cota-bem02.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/cota-bem04.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/cota-bem05.jpg" alt="Projeto Cota Bem" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/netto%201.jpg" alt="Projeto Netto" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/trust%2002.jpg" alt="Projeto Trust" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/trust%2005.jpg" alt="Projeto Trust" loading="lazy"/></div>
-      <div class="slide"><img src="assets/projects/trust%208.jpg" alt="Projeto Trust" loading="lazy"/></div>
+      <div class="slide"><picture><source srcset="assets/projects/3ads-1.webp" type="image/webp"/><img src="assets/projects/3ads%201.jpg" alt="Projeto 3ADS" width="1120" height="630" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/3ads-4.webp" type="image/webp"/><img src="assets/projects/3ads%204.jpg" alt="Projeto 3ADS" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/3ads-5.webp" type="image/webp"/><img src="assets/projects/3ads%205.jpg" alt="Projeto 3ADS" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/avus-01.webp" type="image/webp"/><img src="assets/projects/avus%2001.jpg" alt="Projeto Avus" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/carlos-1.webp" type="image/webp"/><img src="assets/projects/carlos%201.jpg" alt="Projeto Carlos" width="1120" height="630" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/carlos-5.webp" type="image/webp"/><img src="assets/projects/carlos%205.jpg" alt="Projeto Carlos" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/cota-bem01.webp" type="image/webp"/><img src="assets/projects/cota-bem01.jpg" alt="Projeto Cota Bem" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/cota-bem02.webp" type="image/webp"/><img src="assets/projects/cota-bem02.jpg" alt="Projeto Cota Bem" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/cota-bem04.webp" type="image/webp"/><img src="assets/projects/cota-bem04.jpg" alt="Projeto Cota Bem" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/cota-bem05.webp" type="image/webp"/><img src="assets/projects/cota-bem05.jpg" alt="Projeto Cota Bem" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/netto-1.webp" type="image/webp"/><img src="assets/projects/netto%201.jpg" alt="Projeto Netto" width="1120" height="630" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/trust-02.webp" type="image/webp"/><img src="assets/projects/trust%2002.jpg" alt="Projeto Trust" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/trust-05.webp" type="image/webp"/><img src="assets/projects/trust%2005.jpg" alt="Projeto Trust" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
+      <div class="slide"><picture><source srcset="assets/projects/trust-8.webp" type="image/webp"/><img src="assets/projects/trust%208.jpg" alt="Projeto Trust" width="1120" height="672" loading="lazy" decoding="async"/></picture></div>
     </div>
     <div class="car-btns">
       <button class="car-btn" onclick="scrollCarousel('portTrack',-1)" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -696,7 +704,10 @@ footer{position:relative;z-index:1;padding:48px 0;text-align:center;border-top:1
 <section id="quemsomos">
   <div class="bio">
     <div class="bio-photo">
-      <img src="assets/images/bio-foto.png" alt="Quem está por trás da Verus Studio"/>
+      <picture>
+        <source srcset="assets/images/bio-foto.webp" type="image/webp"/>
+        <img src="assets/images/bio-foto.png" alt="Quem está por trás da Verus Studio" width="600" height="750" loading="lazy" decoding="async"/>
+      </picture>
     </div>
     <div>
       <div class="sec-label r">Bastidores</div>
